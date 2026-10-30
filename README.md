@@ -1,4 +1,4 @@
-![207](https://github.com/okannako/celestiamocha/assets/73176377/55fab58c-cf7e-4062-ad3b-8f981612a648)
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/a3a7d146-a210-4733-9304-50d0ff9bf46d" />
 
 * Celestia Mocha test ağı uzun süredir aktif bir şekilde çalışıyor ve geliştirmeler sürekli devam ettiği için belirsiz bir süre zarfında çalışmaya devam edecek. Ağ şu an mocha-5 üzerinde çalışıyor (mocha-4'teki validatorler taşınmadı, mocha-5'te yeniden oluşturulması gerekiyor).
 
