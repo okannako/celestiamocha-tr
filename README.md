@@ -2,7 +2,7 @@
 
 * Celestia Mocha test ağı uzun süredir aktif bir şekilde çalışıyor ve geliştirmeler sürekli devam ettiği için belirsiz bir süre zarfında çalışmaya devam edecek.
 
-* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Bridge, Full Storage ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz.
+* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Fibre, Bridge, Full Storage ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz.
 
 * Kurulumn sırasında veya sonrasında bir şey sormak isterseniz bana Telegram, Mail ve Discord yoluyla ulaşabirsiniz. Ayrıca Github üzerinden de katkı sağlayabilirsiniz.
 
