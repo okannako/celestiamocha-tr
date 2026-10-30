@@ -1,10 +1,12 @@
 ![207](https://github.com/okannako/celestiamocha/assets/73176377/55fab58c-cf7e-4062-ad3b-8f981612a648)
 
-* Celestia Mocha test ağı uzun süredir aktif bir şekilde çalışıyor ve geliştirmeler sürekli devam ettiği için belirsiz bir süre zarfında çalışmaya devam edecek.
+* Celestia Mocha test ağı uzun süredir aktif bir şekilde çalışıyor ve geliştirmeler sürekli devam ettiği için belirsiz bir süre zarfında çalışmaya devam edecek. Ağ şu an mocha-5 üzerinde çalışıyor (mocha-4'teki validatorler taşınmadı, mocha-5'te yeniden oluşturulması gerekiyor).
 
-* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Fibre, Bridge, Full Storage ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz.
+* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Fibre, Bridge ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz. Kılavuz güncel sürümlere göre hazırlanmıştır (celestia-app v10.5.0-mocha, celestia-node v0.34.4-mocha).
 
-* Kurulumn sırasında veya sonrasında bir şey sormak isterseniz bana Telegram, Mail ve Discord yoluyla ulaşabirsiniz. Ayrıca Github üzerinden de katkı sağlayabilirsiniz.
+* Full Storage Node tipi celestia-node'dan kaldırıldı. Bütün veriyi tutmak isteyenler Bridge Node'u --archival ile çalıştırabilir.
+
+* Kurulum sırasında veya sonrasında bir şey sormak isterseniz bana Telegram, Mail ve Discord yoluyla ulaşabilirsiniz. Ayrıca GitHub üzerinden de katkı sağlayabilirsiniz.
 
 ## Validator Node Minimum Sistem Gereksinimleri
 
