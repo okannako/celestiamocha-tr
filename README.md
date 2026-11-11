@@ -2,7 +2,7 @@
 
 * Celestia Mocha test ağı uzun süredir aktif bir şekilde çalışıyor ve geliştirmeler sürekli devam ettiği için belirsiz bir süre zarfında çalışmaya devam edecek. Ağ şu an mocha-5 üzerinde çalışıyor (mocha-4'teki validatorler taşınmadı, mocha-5'te yeniden oluşturulması gerekiyor).
 
-* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Fibre, Bridge ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz. Kılavuz güncel sürümlere göre hazırlanmıştır (celestia-app v10.6.0-mocha, celestia-node v0.34.4-mocha).
+* Bu kılavuz içerisinde adım adım ilerleyerek test ağında Validator, Fibre, Bridge ve Light Node çalıştırabilir, ağa katkıda bulunabilirsiniz. Kılavuz güncel sürümlere göre hazırlanmıştır (celestia-app v10.6.0-mocha, celestia-node v0.35.0-mocha).
 
 * Full Storage Node tipi celestia-node'dan kaldırıldı. Bütün veriyi tutmak isteyenler Bridge Node'u --archival ile çalıştırabilir.
 
@@ -27,7 +27,7 @@ sudo apt install make -y
 
 ### Go Yüklemek
 ```
-ver="1.26.9"
+ver="1.26.10"
 cd $HOME
 wget "https://go.dev/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -304,7 +304,7 @@ sudo apt install make -y
 
 ### Go Yüklemek
 ```
-ver="1.26.9"
+ver="1.26.10"
 cd $HOME
 wget "https://go.dev/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -321,13 +321,13 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.34.4-mocha
+git checkout tags/v0.35.0-mocha
 make build
 make install
 make cel-key
 ```
 
-- Versiyon Kontrol ```celestia version``` >>> v0.34.4-mocha
+- Versiyon Kontrol ```celestia version``` >>> v0.35.0-mocha
 
 ### Init İşlemi
 - Kendi consensus node'unuz varsa rpc-mocha.pops.one yerine onun IP'sini yazın (o node'da gRPC açık olmalı).
@@ -425,7 +425,7 @@ sudo apt install make -y
 
 ### Go Yüklemek
 ```
-ver="1.26.9"
+ver="1.26.10"
 cd $HOME
 wget "https://go.dev/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -442,7 +442,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.34.4-mocha
+git checkout tags/v0.35.0-mocha
 make build
 make install
 make cel-key
@@ -503,6 +503,51 @@ sudo systemctl disable celestia-light
 sudo rm /etc/systemd/system/celestia-light.service
 rm -rf $HOME/celestia-node
 rm -rf $HOME/.celestia-light-mocha-5
+```
+
+## Bridge ve Light Node Güncelleme
+
+- Bu bölüm, bu kılavuzla kurulmuş bir Bridge veya Light Node'u yeni sürüme geçirmek içindir. Son güncelleme: **v0.35.0-mocha**. Sonraki güncellemelerde sadece NODE_VERSION satırını değiştirmeniz yeterlidir.
+- v0.35.0-mocha ile Bitswap kaldırıldı (yerine shrex kullanılıyor), JWT token iptali eklendi ve güvenlik/kararlılık düzeltmeleri geldi. Ağ genelinde ortak bir yükseltme zamanı yok, istediğiniz zaman güncelleyebilirsiniz.
+
+### Go Güncellemek
+- v0.35.0-mocha'yı derlemek için Go 1.26.10 veya üstü gerekiyor. `go version` zaten 1.26.10 veya üstünü gösteriyorsa bu adımı atlayın.
+```
+ver="1.26.10"
+cd $HOME
+wget "https://go.dev/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+source $HOME/.bash_profile
+go version
+```
+
+### celestia-node Güncellemek
+```
+NODE_VERSION=v0.35.0-mocha
+cd $HOME/celestia-node
+git fetch --tags
+git checkout -f tags/$NODE_VERSION
+make build
+make install
+make cel-key
+celestia version
+```
+
+### Bridge Node İçin
+- Node'u durdurup ayar dosyasını yeni sürüme göre güncelliyoruz, sonra tekrar başlatıyoruz.
+```
+sudo systemctl stop celestia-bridge
+celestia bridge config-update --p2p.network mocha
+sudo systemctl start celestia-bridge && sudo journalctl -u celestia-bridge -f
+```
+
+### Light Node İçin
+```
+sudo systemctl stop celestia-light
+celestia light config-update --p2p.network mocha
+sudo systemctl start celestia-light && sudo journalctl -u celestia-light -f
 ```
 
 ### bbr Aktif Hale Getirmek (Mutlaka Yapın)
